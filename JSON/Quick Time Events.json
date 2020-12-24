@@ -1,9 +1,9 @@
 {
-  "Compatibility": "Untested",
+  "Compatibility": "Compatible",
   "Contributors": { "Developer": [ "Panoptes (Xel)" ] },
-  "DefuserDifficulty": "Hard",
+  "DefuserDifficulty": "Medium",
   "Description": "Press a button quickly according to moves in a table. Tags: 4-buttons, playstation-controller, square, circle, triangle, x",
-  "ExpertDifficulty": "Medium",
+  "ExpertDifficulty": "Easy",
   "ModuleID": "xelQuickTimeEvents",
   "Name": "Quick Time Events",
   "Origin": "Mods",

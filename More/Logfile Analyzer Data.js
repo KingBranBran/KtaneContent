@@ -1039,6 +1039,19 @@ const parseData = [
 		]
 	},
 	{
+		moduleID: "bloxx",
+		loggingTag: "Bloxx",
+		matches: [
+			{
+				regex: /Grid:/,
+				handler: function (matches, module) {
+					module.push({ label: "Grid", obj: pre(readMultiple(11).replace(/-/g, " ")) });
+					return true;
+				}
+			}
+		]
+	},
+	{
 		displayName: "Bob Barks",
 		moduleID: "ksmBobBarks",
 		loggingTag: "Bob Barks",
@@ -3846,7 +3859,33 @@ const parseData = [
 	{
 		displayName: "Memory",
 		moduleID: "Memory",
-		loggingTag: "MemoryComponent"
+		loggingTag: "MemoryComponent",
+		matches: [
+			{
+				regex: /(Display set to )MemoryComponent\/label_([1-4])/,
+				handler: function (matches, module) {
+					module.push(matches[1] + matches[2]);
+					return true;
+				}
+			},
+			{
+				regex: /Button labels are .+/,
+				handler: function (matches, module) {
+					module.push(matches[0].replace(/,/g, ", "));
+					return true;
+				}
+			},
+			{
+				regex: /Memory button (\d) pushed \(label: (\d)\)./,
+				handler: function (matches, module) {
+					module.push(`Memory button ${parseInt(matches[1]) + 1} pushed (label: ${matches[2]}).`);
+					return true;
+				}
+			},
+			{
+				regex: /.+/
+			}
+		]
 	},
 	{
 		moduleID: "memorableButtons",
@@ -6935,7 +6974,24 @@ const parseData = [
 	{
 		displayName: "Simon Says",
 		moduleID: "Simon",
-		hasLogging: false
+		loggingTag: "SimonComponent",
+		matches: [
+			{
+				regex: /Button Pressed: (\d)/,
+				handler: function (matches, module) {
+					const colors = ["red", "blue", "green", "yellow"];
+					module.push(`Pushed ${colors[parseInt(matches[1])]}.`)
+					return true;
+				}
+			},
+			{
+				regex: /Solve Progress: (\d)/,
+				handler: function (matches, module) {
+					module.push(`Pushed correct color #${parseInt(matches[1]) + 1}.`);
+					return true;
+				}
+			}
+		]
 	},
 	{
 		displayName: "Switches",
